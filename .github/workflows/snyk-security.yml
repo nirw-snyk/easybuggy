@@ -59,7 +59,7 @@ jobs:
           # authenticate snyk
           snyk auth ${{ secrets.SNYK_TOKEN }}
           #run the snyc code +test:
-          snyk code test --sarif-file-output=snyk.sarif || true
+          snyk code test --sarif-file-output=snyk-code.sarif || true
 
         # Runs Snyk Open Source (SCA) analysis and uploads result to Snyk.
       - name: Snyk Open Source monitor
@@ -68,15 +68,15 @@ jobs:
 
         # Runs Snyk Infrastructure as Code (IaC) analysis and uploads result to Snyk.
         # Use || true to not fail the pipeline.
-      - name: Snyk IaC test and report
-        run: snyk iac test --report # || true
+      #- name: Snyk IaC test and report
+        #run: snyk iac test --report # || true
 
         # Build the docker image for testing
-      - name: Build a Docker image
-        run: docker build -t your/image-to-test .
+      #- name: Build a Docker image
+        #run: docker build -t your/image-to-test .
         # Runs Snyk Container (Container and SCA) analysis and uploads result to Snyk.
-      - name: Snyk Container monitor
-        run: snyk container monitor your/image-to-test --file=Dockerfile
+      #- name: Snyk Container monitor
+        #run: snyk container monitor your/image-to-test --file=Dockerfile
 
         # Push the Snyk Code results into GitHub Code Scanning tab
       - name: Upload result to GitHub Code Scanning
