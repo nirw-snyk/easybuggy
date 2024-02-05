@@ -43,7 +43,8 @@ public class TruncationErrorServlet extends AbstractServlet {
             bodyHtml.append("</form>");
             responseToClient(req, res, getMsg("title.truncationerror.page", locale), bodyHtml.toString());
 
-        } catch (Exception e) {
+        } 
+        catch (Exception e) { //error handling
             log.error("Exception occurs: ", e);
         }
     }
