@@ -24,7 +24,8 @@ public class NetworkSocketLeakServlet extends AbstractServlet {
         StringBuilder bodyHtml = new StringBuilder();
         Locale locale = req.getLocale();
         try {
-            String pingURL = req.getParameter("pingurl");
+             String pingURL = org.apache.commons.lang3.StringEscapeUtils.escapeHtml4(req.getParameter("pingurl"));
+            //String pingURL = req.getParameter("pingurl");
             if (pingURL == null) {
                 pingURL = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + "/ping";
             }
@@ -51,6 +52,7 @@ public class NetworkSocketLeakServlet extends AbstractServlet {
             log.error("Exception occurs: ", e);
             bodyHtml.append(getErrMsg("msg.unknown.exception.occur", new String[] { e.getMessage() }, locale));
         } finally {
+
             responseToClient(req, res, getMsg("title.netsocketleak.page", locale), bodyHtml.toString());
         }
     }
