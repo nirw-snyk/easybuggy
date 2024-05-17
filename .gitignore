@@ -11,3 +11,4 @@ server-work/
 /.idea/
 /easybuggy.iml
 /.dccache
+.vscode/settings.json
