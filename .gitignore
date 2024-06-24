@@ -21,3 +21,4 @@ easybuggy-sca.sarif
 myCyclonedx1.4.json
 SAST-report.html
 SCA-report.html
+.dccache
